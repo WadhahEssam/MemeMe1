@@ -7,12 +7,20 @@
 
 import UIKit
 
+struct Meme {
+    var topText: String?
+    var bottomText: String?
+    var image: UIImage
+    var memedImage: UIImage
+}
+
 class TestViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var openPickerButton: UIButton!
     @IBOutlet weak var openCameraButton: UIButton!
     @IBOutlet weak var topMemeText: UITextField!
+    @IBOutlet weak var shareButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +54,12 @@ class TestViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         // Set text alignment and font
         topMemeText.textAlignment = .left
     }
+    
+    @IBAction func shareImage(_ sender: UIButton) {
+        // share button should be disabled until the image is chosen
+        
+    }
+    
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -112,6 +126,14 @@ class TestViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         picker.dismiss(animated: true, completion: nil)
     }
     
+    private func generateMemedImage() -> UIImage {
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        return memedImage
+    }
     
 }
 
