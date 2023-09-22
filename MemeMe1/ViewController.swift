@@ -12,11 +12,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var albumButton: UIButton!
     @IBOutlet weak var cameraButton: UIButton!
+    @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var canvasView: UIView!
     
     var meme = Meme()
-
+    
     let memeTextFieldDelegate = MemeTextFieldDelegate()
     let imagePickerDelegate = ImagePickerDelegate()
     
@@ -63,10 +64,12 @@ class ViewController: UIViewController {
     }
     
     func redrawCanvas() {
-        print(meme)
         topTextField.text = meme.topText
         bottomTextField.text = meme.bottomText
         imageView.image = meme.image
+        if (meme.isReadyToShare()) {
+            shareButton.isEnabled = true
+        }
     }
     
     private func setupKeyboardNotifications() {
@@ -94,8 +97,8 @@ class ViewController: UIViewController {
         // Check for camera availability
         if !UIImagePickerController.isSourceTypeAvailable(.camera) {
             cameraButton.isEnabled = false
-            cameraButton.alpha = 0.5
         }
+        shareButton.isEnabled = false
     }
 
     private func setupMemeTextFields() {
