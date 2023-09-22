@@ -7,10 +7,13 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
-
+    @IBOutlet weak var albumButton: UIButton!
+    @IBOutlet weak var cameraButton: UIButton!
+    @IBOutlet weak var imageView: UIImageView!
+    
     let memeTextFieldDelegate = MemeTextFieldDelegate()
     
     override func viewDidLoad() {
@@ -68,6 +71,27 @@ class ViewController: UIViewController {
             textField.backgroundColor = UIColor.clear
             textField.borderStyle = .none
         }
+    }
+    
+    @IBAction func handleOpenPicker(_ sender: UIButton) {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        
+        switch (sender) {
+        case cameraButton:
+            imagePickerController.sourceType = .camera
+        default:
+            imagePickerController.sourceType = .photoLibrary
+        }
+        
+        present(imagePickerController, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true)
+        
+        let selectedImage = info[.originalImage] as! UIImage
+        imageView.image = selectedImage
     }
 
 }

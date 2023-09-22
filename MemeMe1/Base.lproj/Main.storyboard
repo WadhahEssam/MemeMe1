@@ -41,11 +41,17 @@
                                                 <rect key="frame" x="8" y="8" width="188.66666666666666" height="34.333333333333336"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="camera.fill" catalog="system" title=" Camera"/>
+                                                <connections>
+                                                    <action selector="handleOpenPicker:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0dF-Km-yg4"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ViE-17-3Tu">
                                                 <rect key="frame" x="196.66666666666663" y="8" width="188.33333333333337" height="34.333333333333336"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="person.2.crop.square.stack.fill" catalog="system" title=" Album"/>
+                                                <connections>
+                                                    <action selector="handleOpenPicker:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KUi-Za-6Gc"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.11467159540247621" green="0.11591634489182293" blue="0.14651018381118774" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -85,7 +91,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="albumButton" destination="ViE-17-3Tu" id="EKO-4S-bRT"/>
                         <outlet property="bottomTextField" destination="unQ-Rm-fcS" id="DNq-fL-bSc"/>
+                        <outlet property="cameraButton" destination="1Rj-UX-c7M" id="PH6-6Q-qVy"/>
+                        <outlet property="imageView" destination="aCp-zh-K8H" id="j15-1m-nFQ"/>
                         <outlet property="topTextField" destination="pYL-9d-abn" id="2hf-7e-iCI"/>
                     </connections>
                 </viewController>
