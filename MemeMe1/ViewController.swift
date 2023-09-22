@@ -143,7 +143,7 @@ class ViewController: UIViewController {
             UIGraphicsEndImageContext()
             return image
         }
-        return nil;
+        return nil
     }
 
 }
