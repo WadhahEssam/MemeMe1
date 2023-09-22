@@ -10,10 +10,14 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
+
+    let memeTextFieldDelegate = MemeTextFieldDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        setupKeyboardNotifications()
+        topTextField.delegate = memeTextFieldDelegate
+        bottomTextField.delegate = memeTextFieldDelegate
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -23,6 +27,27 @@ class ViewController: UIViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    private func setupKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if (self.view.frame.origin.y == 0) {
+                if (bottomTextField.isFirstResponder) { // left view only when bottomText is activve
+                    self.view.frame.origin.y -= keyboardSize.height
+                }
+            }
+        }
+    }
+    
+    @objc private func keyboardWillHide(notificaiton: NSNotification) {
+        if (self.view.frame.origin.y != 0) {
+            self.view.frame.origin.y = 0
+        }
     }
 
     private func setupMemeTextFields() {

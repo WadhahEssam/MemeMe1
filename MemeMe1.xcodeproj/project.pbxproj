@@ -14,6 +14,7 @@
 		EA693E642ABB611A00B73263 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA693E632ABB611A00B73263 /* Assets.xcassets */; };
 		EA693E672ABB611A00B73263 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA693E652ABB611A00B73263 /* LaunchScreen.storyboard */; };
 		EA693E8F2ABCEFD700B73263 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA693E8E2ABCEFD700B73263 /* TestViewController.swift */; };
+		EA693E912ABDA4C000B73263 /* MemeTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA693E902ABDA4C000B73263 /* MemeTextFieldDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		EA693E662ABB611A00B73263 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EA693E682ABB611A00B73263 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA693E8E2ABCEFD700B73263 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		EA693E902ABDA4C000B73263 /* MemeTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeTextFieldDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				EA693E652ABB611A00B73263 /* LaunchScreen.storyboard */,
 				EA693E682ABB611A00B73263 /* Info.plist */,
 				EA693E8E2ABCEFD700B73263 /* TestViewController.swift */,
+				EA693E902ABDA4C000B73263 /* MemeTextFieldDelegate.swift */,
 			);
 			path = MemeMe1;
 			sourceTree = "<group>";
@@ -143,6 +146,7 @@
 			files = (
 				EA693E5F2ABB611900B73263 /* ViewController.swift in Sources */,
 				EA693E5B2ABB611900B73263 /* AppDelegate.swift in Sources */,
+				EA693E912ABDA4C000B73263 /* MemeTextFieldDelegate.swift in Sources */,
 				EA693E8F2ABCEFD700B73263 /* TestViewController.swift in Sources */,
 				EA693E5D2ABB611900B73263 /* SceneDelegate.swift in Sources */,
 			);
