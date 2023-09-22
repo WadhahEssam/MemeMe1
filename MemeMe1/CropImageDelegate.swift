@@ -15,7 +15,6 @@ class CropImageDelegate: NSObject, CropViewControllerDelegate {
     func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
         viewController?.meme.memedImage = image
         if let memedImage = viewController?.meme.memedImage {
-            print("here bere")
             cropViewController.dismiss(animated: true)
             let activityViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
             viewController?.present(activityViewController, animated: true, completion: nil)
