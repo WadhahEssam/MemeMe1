@@ -13,6 +13,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var albumButton: UIButton!
     @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var canvasView: UIView!
     
     let memeTextFieldDelegate = MemeTextFieldDelegate()
     
@@ -48,11 +49,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     
     @IBAction func handleShareImage(_ sender: UIButton) {
-        if let capturedImage = captureView(view: view) {
-            imageView.image = capturedImage
-
-//            let activityViewController = UIActivityViewController(activityItems: [imageView.image!], applicationActivities: nil)
-//            present(activityViewController, animated: true, completion: nil)
+        if let capturedImage = captureView() {
+            let activityViewController = UIActivityViewController(activityItems: [imageView.image!], applicationActivities: nil)
+            present(activityViewController, animated: true, completion: nil)
         }
     }
     
@@ -104,14 +103,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
-    private func captureView(view: UIView) -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, UIScreen.main.scale)
-        if let context = UIGraphicsGetCurrentContext() {
-            view.layer.render(in: context)
+    private func captureView() -> UIImage? {
+        if let view = canvasView {
+            UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, UIScreen.main.scale)
+            if let context = UIGraphicsGetCurrentContext() {
+                view.layer.render(in: context)
+            }
+            let image = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            return image
         }
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return image
+        return nil;
     }
 
 }
