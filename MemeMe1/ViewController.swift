@@ -87,17 +87,17 @@ class ViewController: UIViewController {
     
     @objc private func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if (self.view.frame.origin.y == 0) {
+            if (view.frame.origin.y == 0) {
                 if (bottomTextField.isFirstResponder) { // left view only when bottomText is activve
-                    self.view.frame.origin.y -= keyboardSize.height
+                    view.frame.origin.y -= keyboardSize.height
                 }
             }
         }
     }
     
     @objc private func keyboardWillHide(notificaiton: NSNotification) {
-        if (self.view.frame.origin.y != 0) {
-            self.view.frame.origin.y = 0
+        if (view.frame.origin.y != 0) {
+            view.frame.origin.y = 0
         }
     }
     

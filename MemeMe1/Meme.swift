@@ -14,11 +14,11 @@ struct Meme {
     private var isPlaceHolderImage = true
     var image: UIImage = UIImage(imageLiteralResourceName: "Placeholder") {
         didSet {
-            self.isPlaceHolderImage = false
+            isPlaceHolderImage = false
         }
     }
     func isReadyToShare() -> Bool {
-        return !self.isPlaceHolderImage && topText != "TOP" && bottomText != "BOTTOM";
+        return !isPlaceHolderImage && topText != "TOP" && bottomText != "BOTTOM";
     }
     var memedImage: UIImage?
 }
