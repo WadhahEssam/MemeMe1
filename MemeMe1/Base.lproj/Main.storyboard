@@ -42,7 +42,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rr6-0f-yxg" userLabel="Canvas View">
                                         <rect key="frame" x="0.0" y="109.33333333333331" width="393" height="658.33333333333348"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="240" image="Screenshot 2023-07-31 at 3.18.42 PM" translatesAutoresizingMaskIntoConstraints="NO" id="aCp-zh-K8H" userLabel="MemePreview">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="240" image="Placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="aCp-zh-K8H" userLabel="MemePreview">
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="658.33333333333337"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </imageView>
@@ -187,7 +187,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Screenshot 2023-07-31 at 3.18.42 PM" width="788" height="1646"/>
+        <image name="Placeholder" width="788" height="1646"/>
         <image name="camera.fill" catalog="system" width="128" height="93"/>
         <image name="person.2.crop.square.stack.fill" catalog="system" width="112" height="128"/>
         <image name="repeat" catalog="system" width="128" height="98"/>
