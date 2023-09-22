@@ -34,6 +34,9 @@
                                                 <rect key="frame" x="285.66666666666669" y="67" width="99.333333333333314" height="34.333333333333343"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="repeat" catalog="system" title=" Reset"/>
+                                                <connections>
+                                                    <action selector="handleReset:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PQv-DW-4wD"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.11467159540000001" green="0.1159163449" blue="0.1465101838" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

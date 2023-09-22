@@ -57,19 +57,23 @@ class ViewController: UIViewController {
     
     
     @IBAction func handleShareImage(_ sender: UIButton) {
-        if captureView() != nil {
-            let activityViewController = UIActivityViewController(activityItems: [imageView.image!], applicationActivities: nil)
+        meme.memedImage = captureView()
+        if let memedImage = meme.memedImage {
+            let activityViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
             present(activityViewController, animated: true, completion: nil)
         }
+    }
+    
+    @IBAction func handleReset(_ sender: UIButton) {
+        meme = Meme()
+        redrawCanvas()
     }
     
     func redrawCanvas() {
         topTextField.text = meme.topText
         bottomTextField.text = meme.bottomText
         imageView.image = meme.image
-        if (meme.isReadyToShare()) {
-            shareButton.isEnabled = true
-        }
+        shareButton.isEnabled = meme.isReadyToShare()
     }
     
     private func setupKeyboardNotifications() {
