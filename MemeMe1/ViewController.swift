@@ -59,7 +59,6 @@ class ViewController: UIViewController {
     
     
     @IBAction func handleShareImage(_ sender: UIButton) {
-
         if let capturedView = captureView() {
             let cropViewController = CropViewController(image: capturedView)
             cropViewController.delegate = cropImageDelegate
