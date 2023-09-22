@@ -32,6 +32,37 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return .lightContent
     }
     
+    @IBAction func handleOpenPicker(_ sender: UIButton) {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        
+        switch (sender) {
+        case cameraButton:
+            imagePickerController.sourceType = .camera
+        default:
+            imagePickerController.sourceType = .photoLibrary
+        }
+        
+        present(imagePickerController, animated: true)
+    }
+    
+    
+    @IBAction func handleShareImage(_ sender: UIButton) {
+        if let capturedImage = captureView(view: view) {
+            imageView.image = capturedImage
+
+//            let activityViewController = UIActivityViewController(activityItems: [imageView.image!], applicationActivities: nil)
+//            present(activityViewController, animated: true, completion: nil)
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true)
+        
+        let selectedImage = info[.originalImage] as! UIImage
+        imageView.image = selectedImage
+    }
+    
     private func setupKeyboardNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -73,25 +104,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
-    @IBAction func handleOpenPicker(_ sender: UIButton) {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
-        
-        switch (sender) {
-        case cameraButton:
-            imagePickerController.sourceType = .camera
-        default:
-            imagePickerController.sourceType = .photoLibrary
+    private func captureView(view: UIView) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, UIScreen.main.scale)
+        if let context = UIGraphicsGetCurrentContext() {
+            view.layer.render(in: context)
         }
-        
-        present(imagePickerController, animated: true)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        picker.dismiss(animated: true)
-        
-        let selectedImage = info[.originalImage] as! UIImage
-        imageView.image = selectedImage
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
     }
 
 }
