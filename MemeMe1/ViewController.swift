@@ -7,7 +7,6 @@
 
 import UIKit
 import CropViewController
-import Photos
 
 class ViewController: UIViewController {
     @IBOutlet weak var topTextField: UITextField!
@@ -61,32 +60,10 @@ class ViewController: UIViewController {
     
     @IBAction func handleShareImage(_ sender: UIButton) {
         if let capturedView = captureView() {
-            meme.memedImage = capturedView
-            
-            // Looks like reviewr doesn't have time to read my code, which I understand
-            // (This code was in the CropImageDelegate.swift file, I was letting users to crop
-            // the image before sharing (which is in the optional requirements). removed it anyways
-            if let memedImage = meme.memedImage {
-                let activityViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
-                activityViewController.completionWithItemsHandler = { (activityType, completed, returnedItems, error) in
-                    if completed {
-                        // Save image to album
-                        PHPhotoLibrary.requestAuthorization { status in
-                            if status == .authorized {
-                                UIImageWriteToSavedPhotosAlbum(memedImage, nil, nil, nil)
-                            }
-                        }
-                    } else {
-                        // User canceled activity
-                    }
-                }
-                present(activityViewController, animated: true, completion: nil)
-            }
-            
-//            let cropViewController = CropViewController(image: capturedView)
-//            cropViewController.delegate = cropImageDelegate
-//            cropImageDelegate.viewController = self
-//            present(cropViewController, animated: true, completion: nil)
+            let cropViewController = CropViewController(image: capturedView)
+            cropViewController.delegate = cropImageDelegate
+            cropImageDelegate.viewController = self
+            present(cropViewController, animated: true, completion: nil)
         }
     }
     
