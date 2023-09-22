@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA1EEE282ABDDD9A0002569D /* CropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = EA1EEE272ABDDD9A0002569D /* CropViewController */; };
+		EA1EEE2A2ABDDD9A0002569D /* TOCropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = EA1EEE292ABDDD9A0002569D /* TOCropViewController */; };
+		EA1EEE2C2ABDDE350002569D /* CropImageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1EEE2B2ABDDE350002569D /* CropImageDelegate.swift */; };
 		EA693E5B2ABB611900B73263 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA693E5A2ABB611900B73263 /* AppDelegate.swift */; };
 		EA693E5D2ABB611900B73263 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA693E5C2ABB611900B73263 /* SceneDelegate.swift */; };
 		EA693E5F2ABB611900B73263 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA693E5E2ABB611900B73263 /* ViewController.swift */; };
@@ -19,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EA1EEE2B2ABDDE350002569D /* CropImageDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropImageDelegate.swift; sourceTree = "<group>"; };
 		EA693E572ABB611900B73263 /* MemeMe1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemeMe1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA693E5A2ABB611900B73263 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA693E5C2ABB611900B73263 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +41,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA1EEE2A2ABDDD9A0002569D /* TOCropViewController in Frameworks */,
+				EA1EEE282ABDDD9A0002569D /* CropViewController in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,13 +71,14 @@
 				EA693E5A2ABB611900B73263 /* AppDelegate.swift */,
 				EA693E5C2ABB611900B73263 /* SceneDelegate.swift */,
 				EA693E5E2ABB611900B73263 /* ViewController.swift */,
+				EA693E902ABDA4C000B73263 /* MemeTextFieldDelegate.swift */,
+				EA693E962ABDC53A00B73263 /* ImagePickerDelegate.swift */,
+				EA693E942ABDBE2500B73263 /* Meme.swift */,
 				EA693E602ABB611900B73263 /* Main.storyboard */,
 				EA693E632ABB611A00B73263 /* Assets.xcassets */,
 				EA693E652ABB611A00B73263 /* LaunchScreen.storyboard */,
 				EA693E682ABB611A00B73263 /* Info.plist */,
-				EA693E902ABDA4C000B73263 /* MemeTextFieldDelegate.swift */,
-				EA693E942ABDBE2500B73263 /* Meme.swift */,
-				EA693E962ABDC53A00B73263 /* ImagePickerDelegate.swift */,
+				EA1EEE2B2ABDDE350002569D /* CropImageDelegate.swift */,
 			);
 			path = MemeMe1;
 			sourceTree = "<group>";
@@ -92,6 +99,10 @@
 			dependencies = (
 			);
 			name = MemeMe1;
+			packageProductDependencies = (
+				EA1EEE272ABDDD9A0002569D /* CropViewController */,
+				EA1EEE292ABDDD9A0002569D /* TOCropViewController */,
+			);
 			productName = MemeMe1;
 			productReference = EA693E572ABB611900B73263 /* MemeMe1.app */;
 			productType = "com.apple.product-type.application";
@@ -120,6 +131,9 @@
 				Base,
 			);
 			mainGroup = EA693E4E2ABB611900B73263;
+			packageReferences = (
+				EA1EEE262ABDDD9A0002569D /* XCRemoteSwiftPackageReference "TOCropViewController" */,
+			);
 			productRefGroup = EA693E582ABB611900B73263 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -148,6 +162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA693E972ABDC53A00B73263 /* ImagePickerDelegate.swift in Sources */,
+				EA1EEE2C2ABDDE350002569D /* CropImageDelegate.swift in Sources */,
 				EA693E5F2ABB611900B73263 /* ViewController.swift in Sources */,
 				EA693E5B2ABB611900B73263 /* AppDelegate.swift in Sources */,
 				EA693E912ABDA4C000B73263 /* MemeTextFieldDelegate.swift in Sources */,
@@ -301,9 +316,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MemeMe1/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Our app needs access to the camera in order to let you select images o generate memes";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Our app needs access to the images in order to let you select images to generate memes";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -328,9 +346,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MemeMe1/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Our app needs access to the camera in order to let you select images o generate memes";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Our app needs access to the images in order to let you select images to generate memes";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -368,6 +389,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EA1EEE262ABDDD9A0002569D /* XCRemoteSwiftPackageReference "TOCropViewController" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TimOliver/TOCropViewController";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EA1EEE272ABDDD9A0002569D /* CropViewController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EA1EEE262ABDDD9A0002569D /* XCRemoteSwiftPackageReference "TOCropViewController" */;
+			productName = CropViewController;
+		};
+		EA1EEE292ABDDD9A0002569D /* TOCropViewController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EA1EEE262ABDDD9A0002569D /* XCRemoteSwiftPackageReference "TOCropViewController" */;
+			productName = TOCropViewController;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EA693E4F2ABB611900B73263 /* Project object */;
 }

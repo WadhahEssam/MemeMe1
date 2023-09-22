@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CropViewController
 
 class ViewController: UIViewController {
     @IBOutlet weak var topTextField: UITextField!
@@ -20,6 +21,7 @@ class ViewController: UIViewController {
     
     let memeTextFieldDelegate = MemeTextFieldDelegate()
     let imagePickerDelegate = ImagePickerDelegate()
+    let cropImageDelegate = CropImageDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,10 +59,12 @@ class ViewController: UIViewController {
     
     
     @IBAction func handleShareImage(_ sender: UIButton) {
-        meme.memedImage = captureView()
-        if let memedImage = meme.memedImage {
-            let activityViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
-            present(activityViewController, animated: true, completion: nil)
+
+        if let capturedView = captureView() {
+            let cropViewController = CropViewController(image: capturedView)
+            cropViewController.delegate = cropImageDelegate
+            cropImageDelegate.viewController = self
+            present(cropViewController, animated: true, completion: nil)
         }
     }
     
