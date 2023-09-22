@@ -27,6 +27,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupMemeTextFields()
+        // Check for camera availability
+        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
+            cameraButton.isEnabled = false
+            cameraButton.alpha = 0.5
+        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
