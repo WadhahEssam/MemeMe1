@@ -102,10 +102,13 @@ class ViewController: UIViewController {
     }
     
     private func setupButtons() {
-        // Check for camera availability
-        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
+        // Check for simulator
+        #if targetEnvironment(simulator)
             cameraButton.isEnabled = false
-        }
+        #else
+            cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera) // based on camera availablity
+        #endif
+        
         shareButton.isEnabled = false
     }
 
