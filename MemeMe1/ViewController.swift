@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController {
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var albumButton: UIButton!
@@ -15,11 +15,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var canvasView: UIView!
     
+    var meme = Meme()
+
     let memeTextFieldDelegate = MemeTextFieldDelegate()
+    let imagePickerDelegate = ImagePickerDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupKeyboardNotifications()
+        memeTextFieldDelegate.viewController = self
         topTextField.delegate = memeTextFieldDelegate
         bottomTextField.delegate = memeTextFieldDelegate
     }
@@ -27,11 +31,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupMemeTextFields()
-        // Check for camera availability
-        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
-            cameraButton.isEnabled = false
-            cameraButton.alpha = 0.5
-        }
+        setupButtons()
+        redrawCanvas()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -40,7 +41,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBAction func handleOpenPicker(_ sender: UIButton) {
         let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
+        imagePickerDelegate.viewController = self
+        imagePickerController.delegate = imagePickerDelegate
         
         switch (sender) {
         case cameraButton:
@@ -54,17 +56,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     
     @IBAction func handleShareImage(_ sender: UIButton) {
-        if let capturedImage = captureView() {
+        if captureView() != nil {
             let activityViewController = UIActivityViewController(activityItems: [imageView.image!], applicationActivities: nil)
             present(activityViewController, animated: true, completion: nil)
         }
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        picker.dismiss(animated: true)
-        
-        let selectedImage = info[.originalImage] as! UIImage
-        imageView.image = selectedImage
+    func redrawCanvas() {
+        print(meme)
+        topTextField.text = meme.topText
+        bottomTextField.text = meme.bottomText
+        imageView.image = meme.image
     }
     
     private func setupKeyboardNotifications() {
@@ -87,13 +89,21 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             self.view.frame.origin.y = 0
         }
     }
+    
+    private func setupButtons() {
+        // Check for camera availability
+        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
+            cameraButton.isEnabled = false
+            cameraButton.alpha = 0.5
+        }
+    }
 
     private func setupMemeTextFields() {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = .center
 
         let memeTextAttributes: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.strokeColor: UIColor.clear,
+            NSAttributedString.Key.strokeColor: UIColor.black,
             NSAttributedString.Key.foregroundColor: UIColor.white,
             NSAttributedString.Key.backgroundColor: UIColor.clear,
             NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 50)!,
@@ -105,6 +115,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             textField.defaultTextAttributes = memeTextAttributes
             textField.backgroundColor = UIColor.clear
             textField.borderStyle = .none
+            textField.autocorrectionType = .no
         }
     }
     
